@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phylum Coelenterata</title>
+  <style>
+    :root {
+      --bg: #000a0d; 
+      --card: #001f29;
+      --accent: #ffb703;
+      --text: #ffffff; 
+      --muted: rgba(255, 255, 255, 0.85);
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at top, #003440, var(--bg) 95%);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .deck {
+      width: 98%;
+      max-width: 1400px;
+      height: 90vh;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 60px;
+      display: flex;
+      flex-direction: row; 
+      align-items: center;
+      gap: 50px;
+      transform: translateX(120%);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+    .slide.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .slide.exit-left {
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+    
+    .content-box {
+      flex: 1.2;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    h1 { 
+      font-size: 64px; 
+      margin: 0; 
+      font-weight: 700; 
+      color: var(--accent);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    h2 { 
+      font-size: 48px; 
+      margin: 0; 
+      font-weight: 600; 
+      color: var(--accent);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    h3 {
+      font-size: 34px;
+      color: var(--muted);
+      margin: -15px 0 0 0;
+      font-style: italic;
+    }
+    p { margin: 0; font-size: 32px; line-height: 1.4; }
+    ul { margin: 0; padding-left: 2rem; font-size: 30px; line-height: 1.5; }
+    li { margin-bottom: 15px; }
+    
+    img {
+      flex: 0.8;
+      max-width: 45%;
+      max-height: 85%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .controls {
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      display: flex;
+      gap: 15px;
+      z-index: 10;
+    }
+    button.icon {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text);
+      padding: 12px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+    button.icon:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .pager {
+      position: absolute;
+      right: 40px;
+      bottom: 30px;
+      color: var(--muted);
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+      .slide { flex-direction: column; padding: 40px; text-align: center; }
+      img { max-width: 70%; max-height: 40%; }
+      ul { text-align: left; }
+      h1 { font-size: 48px; }
+      h2 { font-size: 36px; }
+      p, ul { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+
+    <section class="slide active">
+      <div class="content-box">
+        <h1>Phylum Coelenterata</h1>
+        <h3>(Koilas + Enteron)</h3>
+        <h2>Introduction</h2>
+        <ul>
+          <li>Aquatic animals, mostly marine; some freshwater</li>
+          <li><b>Diploblastic</b> → body made of two layers</li>
+          <li><b>Radial symmetry</b> → parts arranged around central axis</li>
+        </ul>
+      </div>
+      <img src="../images/cnidaria-intro.jpg" alt="Cnidarians">
+    </section>
+
+    <section class="slide">
+      <div class="content-box">
+        <h2>Body Structure</h2>
+        <ul>
+          <li>Body wall: Epidermis, Gastrodermis, and Mesoglea</li>
+          <li>Single cavity: <b>Coelenteron</b></li>
+          <li>Mouth is the only opening</li>
+          <li>Tentacles help in locomotion & food capture</li>
+        </ul>
+      </div>
+      <img src="../images/Coelentrata.png" alt="Body structure">
+    </section>
+
+    <section class="slide">
+      <div class="content-box">
+        <h2>Specialized Cells</h2>
+        <ul>
+          <li><b>Cnidocytes</b> → stinging cells for defense & prey</li>
+          <li>Nerve cells → simple nerve net</li>
+          <li>Epitheliomuscular cells → contraction</li>
+          <li>Interstitial cells → regeneration</li>
+        </ul>
+      </div>
+      <img src="../images/cnidaria-cells.jpg" alt="Specialized cells">
+    </section>
+
+    <section class="slide">
+      <div class="content-box">
+        <h2>Key Features</h2>
+        <ul>
+          <li>Tissue-level organization</li>
+          <li>Two body forms:
+            <ul>
+              <li><b>Polyp</b> → sessile, cylindrical</li>
+              <li><b>Medusa</b> → free-swimming</li>
+            </ul>
+          </li>
+          <li>Respiration through body surface</li>
+        </ul>
+      </div>
+      <img src="../images/polyp-medusa.png" alt="Polyp vs Medusa">
+    </section>
+
+    <section class="slide">
+      <div class="content-box">
+        <h2>Subphyla</h2>
+        <ul>
+          <li><b>Anthozoa</b> → only polyp stage (Corals)</li>
+          <li><b>Medusozoa</b> → polyp + medusa stages (Jellyfish, Hydra)</li>
+        </ul>
+      </div>
+      <img src="../images/cnidaria-subphyla.jpg" alt="Subphyla examples">
+    </section>
+
+    <section class="slide">
+      <div class="content-box">
+        <h2>Classes</h2>
+        <ul>
+          <li><b>Hydrozoa</b> → Hydra, Obelia</li>
+          <li><b>Scyphozoa</b> → True jellyfish (Aurelia)</li>
+          <li><b>Anthozoa</b> → Corals, Sea anemones</li>
+          <li><b>Cubozoa</b> → Box jellyfish</li>
+        </ul>
+      </div>
+      <img src="../images/cnidaria-classes.jpg" alt="Classes of Cnidaria">
+    </section>
+
+    <section class="slide">
+      <div class="content-box">
+        <h2>Reproduction</h2>
+        <ul>
+          <li><b>Asexual</b> → budding and regeneration</li>
+          <li><b>Sexual</b> → gametes → planula larva</li>
+          <li>Alternation of generations: Polyp ↔ Medusa</li>
+        </ul>
+      </div>
+      <img src="../images/cnidaria-reproduction.png" alt="Reproduction cycle">
+    </section>
+
+    <section class="slide">
+      <div class="content-box">
+        <h2>Importance</h2>
+        <ul>
+          <li>Coral reefs support biodiversity</li>
+          <li>Vital part of the marine food chain</li>
+          <li>Jellyfish stings can be harmful</li>
+          <li>Ecological and aesthetic value</li>
+        </ul>
+      </div>
+      <img src="../images/coral-reef.jpg" alt="Importance of corals">
+    </section>
+
+    <section class="slide">
+      <div class="content-box">
+        <h1>Presented by</h1>
+        <p><b>Bigyan Pokharel</b></p>
+        <p>(Underscoore)</p>
+      </div>
+      <div style="flex: 0.8;"></div>
+    </section>
+
+    <div class="controls">
+      <button class="icon" onclick="prev()">◀ Prev</button>
+      <a href="/" style="text-decoration: none;"><button class="icon">← Back</button></a>
+      <button class="icon" onclick="next()">Next ▶</button>
+    </div>
+    <div class="pager" id="pager">1 / 9</div>
+  </div>
+
+  <script src="../web/script4.js"></script>
+</body>
+</html>
