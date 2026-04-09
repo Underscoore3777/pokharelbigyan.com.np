@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phylum Echinodermata Presentation</title>
     
-    <!-- Professional Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
@@ -40,7 +39,6 @@
             color: var(--text-main);
         }
 
-        /* 16:9 Presentation Deck */
         .deck-container {
             width: 95vw;
             max-width: 1200px;
@@ -54,7 +52,6 @@
             overflow: hidden;
         }
 
-        /* Progress Bar */
         .progress-container {
             width: 100%;
             height: 5px;
@@ -73,7 +70,7 @@
             box-shadow: 0 0 10px var(--primary);
         }
 
-        /* Slides Area */
+        
         .slides-area {
             flex-grow: 1;
             position: relative;
@@ -107,7 +104,6 @@
             padding: 0;
         }
 
-        /* Typography */
         h1, h2 {
             font-family: 'Outfit', sans-serif;
             color: var(--bg-dark);
@@ -147,7 +143,6 @@
             font-weight: 300;
         }
 
-        /* Layout Grids */
         .split-layout {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
@@ -160,7 +155,6 @@
             grid-template-columns: 0.9fr 1.1fr;
         }
 
-        /* Lists */
         ul { list-style: none; }
         
         li {
@@ -189,7 +183,6 @@
             font-weight: 600;
         }
 
-        /* Images */
         .image-container {
             width: 100%;
             height: 100%;
@@ -211,7 +204,6 @@
             transform: scale(1.05);
         }
 
-        /* Cards */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -271,7 +263,6 @@
             text-transform: uppercase;
         }
 
-        /* Controls Footer */
         .controls {
             display: flex;
             justify-content: space-between;
@@ -322,7 +313,6 @@
             cursor: not-allowed;
         }
 
-        /* Specific Slide Styling */
         .hero-slide {
             background: linear-gradient(rgba(10, 17, 40, 0.75), rgba(10, 17, 40, 0.85)), url('https://images.unsplash.com/photo-1504505278635-f09c6f9ea22e?q=80&w=1600&auto=format&fit=crop') center/cover;
             color: var(--white);
@@ -348,7 +338,6 @@
         .hero-slide li { color: var(--white); }
         .hero-slide li::before { background-color: var(--accent); }
 
-        /* Slide 6 List Style */
         .class-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -383,7 +372,6 @@
 
         <div class="slides-area">
             
-            <!-- Slide 1: Title Hero -->
             <div class="slide active">
                 <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                     <h1>Phylum Echinodermata</h1>
@@ -398,7 +386,6 @@
                 </div>
             </div>
 
-            <!-- Slide 2: Characteristics -->
             <div class="slide">
                 <h2>Key Characteristics</h2>
                 <div class="split-layout">
@@ -415,7 +402,6 @@
                 </div>
             </div>
 
-            <!-- Slide 3: Water Vascular System -->
             <div class="slide">
                 <h2>The Water Vascular System</h2>
                 <div class="split-layout reverse">
@@ -434,7 +420,6 @@
                 </div>
             </div>
 
-            <!-- Slide 4: Feeding & Digestion -->
             <div class="slide">
                 <h2>Feeding Behaviors</h2>
                 <div class="card-grid">
@@ -462,7 +447,6 @@
                 </div>
             </div>
 
-            <!-- Slide 5: Reproduction -->
             <div class="slide">
                 <h2>Reproduction & Regeneration</h2>
                 <div class="split-layout">
@@ -479,7 +463,6 @@
                 </div>
             </div>
 
-            <!-- Slide 6: Taxonomy -->
             <div class="slide">
                 <h2>The 5 Major Classes</h2>
                 <div class="class-list">
@@ -521,7 +504,6 @@
                 </div>
             </div>
 
-            <!-- Slide 7: Ecological Impact -->
             <div class="slide">
                 <h2>Ecological Importance</h2>
                 <div class="split-layout reverse">
@@ -538,7 +520,6 @@
                 </div>
             </div>
 
-            <!-- Slide 8: Fun Facts -->
             <div class="slide">
                 <h2>Fascinating Anomalies</h2>
                 <div class="split-layout">
@@ -560,53 +541,54 @@
             </div>
 
             <div class="slide no-padding">
-    <div style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 50px;">
-        
-        <div style="margin-bottom: 50px; text-align: center;">
-            <h1 style="font-size: 5rem; color: var(--bg-dark); margin-bottom: 10px;">Thank You!</h1>
-            <div style="height: 6px; width: 100px; background: var(--primary); margin: 0 auto; border-radius: 10px;"></div>
-        </div>
+                <div style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 50px; position: relative;">
+                    
+                    <div style="margin-bottom: 50px; text-align: center;">
+                        <h1 style="font-size: 5rem; color: var(--bg-dark); margin-bottom: 10px;">Thank You!</h1>
+                        <div style="height: 6px; width: 100px; background: var(--primary); margin: 0 auto; border-radius: 10px;"></div>
+                    </div>
 
-        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; width: 100%; max-width: 1000px;">
-            
-            <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid var(--border); text-align: left;">
-                <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: var(--primary); margin-bottom: 25px; font-weight: 800;">Presented By</p>
-                
-                <div style="display: flex; flex-direction: column; gap: 15px;">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></div>
-                        <h2 style="font-size: 1.8rem; margin: 0; padding: 0; border: none; font-family: 'Outfit';">Bigyan Pokharel</h2>
+                    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; width: 100%; max-width: 1000px;">
+                        
+                        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid var(--border); text-align: left;">
+                            <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: var(--primary); margin-bottom: 25px; font-weight: 800;">Presented By</p>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></div>
+                                    <h2 style="font-size: 1.8rem; margin: 0; padding: 0; border: none; font-family: 'Outfit';">Bigyan Pokharel</h2>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></div>
+                                    <h2 style="font-size: 1.8rem; margin: 0; padding: 0; border: none; font-family: 'Outfit';">Dipendra K. Ram</h2>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></div>
+                                    <h2 style="font-size: 1.8rem; margin: 0; padding: 0; border: none; font-family: 'Outfit';">Nirav Khatiwoda</h2>
+                                </div>
+                            </div>
+                            <p style="margin-top: 25px; font-weight: 600; color: var(--text-muted);">Grade 11 | Science Stream</p>
+                        </div>
+
+                        <div style="background: var(--bg-dark); padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); text-align: left; color: white; display: flex; flex-direction: column; justify-content: center;">
+                            <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: var(--accent); margin-bottom: 20px; font-weight: 800;">Submitted To</p>
+                            <h2 style="font-size: 2.2rem; margin: 0; color: white; border: none; font-family: 'Outfit';">Mr. Debendra P. Dhakal</h2>
+                            <p style="font-size: 1.2rem; margin-top: 15px; opacity: 0.8; font-weight: 300;">Department of Zoology</p>
+                        </div>
+
                     </div>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></div>
-                        <h2 style="font-size: 1.8rem; margin: 0; padding: 0; border: none; font-family: 'Outfit';">Dipendra K. Ram</h2>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></div>
-                        <h2 style="font-size: 1.8rem; margin: 0; padding: 0; border: none; font-family: 'Outfit';">Nirav Khatiwoda</h2>
-                    </div>
+
+                    <p style="margin-top: 50px; color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px;">
+                        Phylum Echinodermata Presentation
+                    </p>
                 </div>
-                <p style="margin-top: 25px; font-weight: 600; color: var(--text-muted);">Grade 11 | Science Stream</p>
             </div>
 
-            <div style="background: var(--bg-dark); padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); text-align: left; color: white; display: flex; flex-direction: column; justify-content: center;">
-                <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: var(--accent); margin-bottom: 20px; font-weight: 800;">Submitted To</p>
-                <h2 style="font-size: 2.2rem; margin: 0; color: white; border: none; font-family: 'Outfit';">Mr. Debendra P. Dhakal</h2>
-                <p style="font-size: 1.2rem; margin-top: 15px; opacity: 0.8; font-weight: 300;">Department of Zoology</p>
-            </div>
+        </div> 
 
-        </div>
-
-        <p style="position: absolute; bottom: 40px; color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px;">
-            Phylum Echinodermata Presentation
-        </p>
-    </div>
-</div>
-
-        <!-- Controls / Footer -->
         <div class="controls">
             <div class="slide-indicator">
-                SLIDE <span id="currentSlideNum">1</span> OF <span id="totalSlideNum">8</span>
+                SLIDE <span id="currentSlideNum">1</span> OF <span id="totalSlideNum">9</span>
             </div>
             <div class="btn-group">
                 <button id="prevBtn" onclick="changeSlide(-1)">
@@ -619,8 +601,9 @@
                 </button>
             </div>
         </div>
-    </div>
-
+        
+    </div> 
+    
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
@@ -635,7 +618,6 @@
         totalSlideEl.innerText = totalSlides;
 
         function updateUI() {
-            // Update Slides
             slides.forEach((slide, index) => {
                 if (index === currentSlide) {
                     slide.classList.add('active');
@@ -644,14 +626,11 @@
                 }
             });
 
-            // Update Progress Bar
             const progress = ((currentSlide) / (totalSlides - 1)) * 100;
             progressBar.style.width = `${progress}%`;
 
-            // Update Slide Number
             currentSlideEl.innerText = currentSlide + 1;
 
-            // Update Button States
             prevBtn.disabled = currentSlide === 0;
             nextBtn.disabled = currentSlide === totalSlides - 1;
         }
@@ -664,7 +643,6 @@
             }
         }
 
-        // Keyboard Navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 changeSlide(1);
@@ -673,7 +651,6 @@
             }
         });
 
-        // Initial render
         updateUI();
     </script>
 </body>
