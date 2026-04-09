@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phylum Echinodermata Presentation</title>
+    
+    <!-- Professional Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0A1128;
+            --bg-light: #F4F7F6;
+            --primary: #0066CC;
+            --primary-light: #E5F0FA;
+            --accent: #FF6B35;
+            --text-main: #1A1A1D;
+            --text-muted: #555962;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark), #1A2A42);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text-main);
+        }
+
+        /* 16:9 Presentation Deck */
+        .deck-container {
+            width: 95vw;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            background-color: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background-color: rgba(255,255,255,0.2);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 50;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Slides Area */
+        .slides-area {
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 50px 70px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(40px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: var(--white);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .slide.no-padding {
+            padding: 0;
+        }
+
+        /* Typography */
+        h1, h2 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--bg-dark);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* Layout Grids */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+            height: 100%;
+        }
+
+        .split-layout.reverse {
+            grid-template-columns: 0.9fr 1.1fr;
+        }
+
+        /* Lists */
+        ul { list-style: none; }
+        
+        li {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 35px;
+            color: var(--text-muted);
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Images */
+        .image-container {
+            width: 100%;
+            height: 100%;
+            max-height: 480px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 10px;
+        }
+
+        .info-card {
+            background-color: var(--bg-light);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary-light);
+        }
+
+        .card-img {
+            height: 160px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .info-card h3 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 0.85rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Controls Footer */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: var(--white);
+            border-top: 1px solid var(--border);
+            z-index: 10;
+        }
+
+        .slide-indicator {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            background-color: var(--white);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Specific Slide Styling */
+        .hero-slide {
+            background: linear-gradient(rgba(10, 17, 40, 0.75), rgba(10, 17, 40, 0.85)), url('https://images.unsplash.com/photo-1504505278635-f09c6f9ea22e?q=80&w=1600&auto=format&fit=crop') center/cover;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+        }
+        
+        .hero-slide h1 { color: var(--white); text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .hero-slide .subtitle { color: var(--light); }
+        .hero-slide .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+            margin-top: 20px;
+        }
+        .hero-slide li { color: var(--white); }
+        .hero-slide li::before { background-color: var(--accent); }
+
+        /* Slide 6 List Style */
+        .class-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .class-item {
+            display: flex;
+            align-items: center;
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 10px;
+            gap: 15px;
+            border: 1px solid var(--border);
+        }
+        .class-thumb {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="deck-container">
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="slides-area">
+            
+            <!-- Slide 1: Title Hero -->
+            <div class="slide active">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h1>Phylum Echinodermata</h1>
+                    <p class="subtitle">An overview of the ocean's "Spiny-Skinned" animals</p>
+                    <div style="text-align: left; background: var(--bg-light); padding: 30px; border-radius: 12px; display: inline-block;">
+                        <ul style="margin: 0;">
+                            <li><strong>Etymology:</strong> "Echino" (spiny) + "derma" (skin).</li>
+                            <li><strong>Habitat:</strong> 100% marine. Never found in freshwater or on land.</li>
+                            <li><strong>Examples:</strong> Sea stars, sea urchins, sand dollars, sea cucumbers.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Characteristics -->
+            <div class="slide">
+                <h2>Key Characteristics</h2>
+                <div class="split-layout">
+                    <div>
+                        <ul>
+                            <li><strong>Pentaradial Symmetry:</strong> Adult bodies are beautifully divided into five equal parts arranged around a central axis.</li>
+                            <li><strong>Spiny Endoskeleton:</strong> They possess an internal skeleton of hard calcium carbonate plates, often piercing through as spines.</li>
+                            <li><strong>Unique Nervous System:</strong> They completely lack a centralized brain, heart, or true blood, operating on a simple nerve ring.</li>
+                        </ul>
+                    </div>
+                    <div class="image-container">
+                        <img src="seaurchin.png" alt="Close up of sea urchin spines">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Water Vascular System -->
+            <div class="slide">
+                <h2>The Water Vascular System</h2>
+                <div class="split-layout reverse">
+                    <div class="image-container">
+                        <img src="starfish.png" alt="Starfish underwater">
+                    </div>
+                    <div>
+                        <p class="subtitle" style="margin-bottom: 20px;">The evolutionary superpower</p>
+                        <ul>
+                            <li><strong>The Mechanism:</strong> A complex, hydraulic network of water-filled canals pumping throughout their entire body.</li>
+                            <li><strong>Hydraulic Power:</strong> Ocean water is actively pumped in through a sieve plate to maintain internal pressure instead of using blood.</li>
+                            <li><strong>Tube Feet:</strong> This water pressure powers hundreds of tiny, suction-cup appendages.</li>
+                            <li><strong>Functionality:</strong> Tube feet allow for swift locomotion, gripping tightly to rocks in rough surf, and capturing prey.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Feeding & Digestion -->
+            <div class="slide">
+                <h2>Feeding Behaviors</h2>
+                <div class="card-grid">
+                    <div class="info-card">
+                        <img src="starfish1.png" class="card-img" alt="Starfish">
+                        <div class="card-body">
+                            <h3>Apex Hunters (Sea Stars)</h3>
+                            <p>Carnivores that pry open clams, evert their stomach <em>out of their mouth</em> into the shell, digest the prey, and retract the stomach back in.</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <img src="seaurchin1.png" class="card-img" alt="Sea Urchin">
+                        <div class="card-body">
+                            <h3>Benthic Grazers (Urchins)</h3>
+                            <p>Utilize a complex, five-jawed apparatus known as "Aristotle's lantern" to scrape tough algae and kelp directly off rocks.</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <img src="sea_cucumber.png" class="card-img" alt="Ocean Sand">
+                        <div class="card-body">
+                            <h3>Ocean Cleaners (Cucumbers)</h3>
+                            <p>Detritivores that crawl across the seafloor swallowing sand and dead organic matter, expelling perfectly clean sand behind them.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Reproduction -->
+            <div class="slide">
+                <h2>Reproduction & Regeneration</h2>
+                <div class="split-layout">
+                    <div>
+                        <ul>
+                            <li><strong>Broadcast Spawning:</strong> Most species reproduce sexually by releasing clouds of eggs and sperm into the water column simultaneously.</li>
+                            <li><strong>Advanced Regeneration:</strong> Echinoderms possess a remarkable cellular ability to completely regrow severed or damaged body parts.</li>
+                            <li><strong>Survival Mechanism:</strong> If a predator severs an arm, it heals. If the severed arm contains a portion of the central disc, the single arm can regenerate into a whole new starfish!</li>
+                        </ul>
+                    </div>
+                    <div class="image-container">
+                        <img src="satrfish_regeneration.png" alt="Close up of regenerating starfish">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Taxonomy -->
+            <div class="slide">
+                <h2>The 5 Major Classes</h2>
+                <div class="class-list">
+                    <div class="class-item">
+                        <img src="sea_star.png" class="class-thumb" alt="Sea Star">
+                        <div>
+                            <h3 style="color: var(--primary); font-family: 'Outfit';">Asteroidea (Sea Stars)</h3>
+                            <p style="color: var(--text-muted); font-size: 1rem;">The classic, heavily-built 5-armed starfish.</p>
+                        </div>
+                    </div>
+                    <div class="class-item">
+                        <img src="Brittle_Star.png" class="class-thumb" alt="Brittle Star">
+                        <div>
+                            <h3 style="color: var(--primary); font-family: 'Outfit';">Ophiuroidea (Brittle Stars)</h3>
+                            <p style="color: var(--text-muted); font-size: 1rem;">Long, whip-like, fragile arms used for rapid crawling.</p>
+                        </div>
+                    </div>
+                    <div class="class-item">
+                        <img src="urchin.png" class="class-thumb" alt="Urchin">
+                        <div>
+                            <h3 style="color: var(--primary); font-family: 'Outfit';">Echinoidea (Sea Urchins)</h3>
+                            <p style="color: var(--text-muted); font-size: 1rem;">Armless, spherical bodies covered in mobile spines.</p>
+                        </div>
+                    </div>
+                    <div class="class-item">
+                        <img src="cucumber.png" class="class-thumb" alt="Cucumber">
+                        <div>
+                            <h3 style="color: var(--primary); font-family: 'Outfit';">Holothuroidea (Sea Cucumbers)</h3>
+                            <p style="color: var(--text-muted); font-size: 1rem;">Elongated, soft-bodied organisms lacking arms.</p>
+                        </div>
+                    </div>
+                    <div class="class-item" style="grid-column: 1 / -1; width: 50%; margin: 0 auto;">
+                        <img src="feather_star.png" class="class-thumb" alt="Feather Star">
+                        <div>
+                            <h3 style="color: var(--primary); font-family: 'Outfit';">Crinoidea (Feather Stars)</h3>
+                            <p style="color: var(--text-muted); font-size: 1rem;">Ancient group resembling underwater ferns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Ecological Impact -->
+            <div class="slide">
+                <h2>Ecological Importance</h2>
+                <div class="split-layout reverse">
+                    <div class="image-container">
+                        <img src="kelp_forest.png" alt="Kelp Forest">
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Keystone Species:</strong> Sea stars regulate populations of mussels. Without them, bivalves would monopolize and destroy the reef ecosystem.</li>
+                            <li><strong>Kelp Forest Dynamics:</strong> Sea urchin populations must be kept in check by predators (like sea otters). Overpopulation leads to barren wastelands where kelp is decimated.</li>
+                            <li><strong>Benthic Recycling:</strong> Sea cucumbers constantly bioturbate and oxygenate the ocean floor, acting as the vital "earthworms of the sea."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Fun Facts -->
+            <div class="slide">
+                <h2>Fascinating Anomalies</h2>
+                <div class="split-layout">
+                    <div>
+                        <ul>
+                            <li><strong>Ocular Capabilities:</strong> Sea stars possess a microscopic, light-sensitive "eye spot" at the very tip of each arm.</li>
+                            <li><strong>Evisceration Defense:</strong> When severely threatened, sea cucumbers can violently expel their internal organs out of their body to entangle predators (and grow them back later).</li>
+                            <li><strong>Massive Biodiversity:</strong> They are one of the most successful marine phyla in existence.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="image-container" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('beach.png') center/cover;">
+                        <div style="text-align: center; color: white; padding: 40px;">
+                            <h1 style="color: white; font-size: 5rem; margin: 0; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">7,000+</h1>
+                            <p style="font-size: 1.5rem; font-weight: 300;">Living Species Worldwide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide no-padding">
+    <div style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 50px;">
+        
+        <div style="margin-bottom: 50px; text-align: center;">
+            <h1 style="font-size: 5rem; color: var(--bg-dark); margin-bottom: 10px;">Thank You!</h1>
+            <div style="height: 6px; width: 100px; background: var(--primary); margin: 0 auto; border-radius: 10px;"></div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; width: 100%; max-width: 1000px;">
+            
+            <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid var(--border); text-align: left;">
+                <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: var(--primary); margin-bottom: 25px; font-weight: 800;">Presented By</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></div>
+                        <h2 style="font-size: 1.8rem; margin: 0; padding: 0; border: none; font-family: 'Outfit';">Bigyan Pokharel</h2>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></div>
+                        <h2 style="font-size: 1.8rem; margin: 0; padding: 0; border: none; font-family: 'Outfit';">Dipendra K. Ram</h2>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></div>
+                        <h2 style="font-size: 1.8rem; margin: 0; padding: 0; border: none; font-family: 'Outfit';">Nirav Khatiwoda</h2>
+                    </div>
+                </div>
+                <p style="margin-top: 25px; font-weight: 600; color: var(--text-muted);">Grade 11 | Science Stream</p>
+            </div>
+
+            <div style="background: var(--bg-dark); padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); text-align: left; color: white; display: flex; flex-direction: column; justify-content: center;">
+                <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: var(--accent); margin-bottom: 20px; font-weight: 800;">Submitted To</p>
+                <h2 style="font-size: 2.2rem; margin: 0; color: white; border: none; font-family: 'Outfit';">Mr. Debendra P. Dhakal</h2>
+                <p style="font-size: 1.2rem; margin-top: 15px; opacity: 0.8; font-weight: 300;">Department of Zoology</p>
+            </div>
+
+        </div>
+
+        <p style="position: absolute; bottom: 40px; color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px;">
+            Phylum Echinodermata Presentation
+        </p>
+    </div>
+</div>
+
+        <!-- Controls / Footer -->
+        <div class="controls">
+            <div class="slide-indicator">
+                SLIDE <span id="currentSlideNum">1</span> OF <span id="totalSlideNum">8</span>
+            </div>
+            <div class="btn-group">
+                <button id="prevBtn" onclick="changeSlide(-1)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                    Prev
+                </button>
+                <button id="nextBtn" onclick="changeSlide(1)">
+                    Next
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        const currentSlideEl = document.getElementById('currentSlideNum');
+        const totalSlideEl = document.getElementById('totalSlideNum');
+        const progressBar = document.getElementById('progressBar');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        totalSlideEl.innerText = totalSlides;
+
+        function updateUI() {
+            // Update Slides
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Update Progress Bar
+            const progress = ((currentSlide) / (totalSlides - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // Update Slide Number
+            currentSlideEl.innerText = currentSlide + 1;
+
+            // Update Button States
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            const newIndex = currentSlide + direction;
+            if (newIndex >= 0 && newIndex < totalSlides) {
+                currentSlide = newIndex;
+                updateUI();
+            }
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        // Initial render
+        updateUI();
+    </script>
+</body>
+</html>
