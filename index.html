@@ -231,6 +231,8 @@
 
     .cp-side { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 110px; }
     .gcard { display: block; width: 100%; max-width: 100%; border-radius: 20px; background: white; box-shadow: 0 18px 40px rgba(0,0,0,.25); }
+    .gwrap { position: relative; display: block; }
+    .gshield { display: none; }
     .cp-side-note { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.6); font-size: .8rem; padding: 0 6px; }
     .cp-side-note i { color: var(--lime); }
     @media (max-width: 800px) { .cp-side { position: static; } }
@@ -406,6 +408,24 @@
     }
     @media (max-width: 800px) and (orientation: landscape) { .hero { padding: 36px 0; } }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *:before, *:after { transition-duration: .01ms !important; } }
+
+    /* ---- Desktop-only amoeba cursor (fine pointer + hover capable devices) ---- */
+    .cursor-blob, .cursor-dot { display: none; }
+    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+      html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor [role="button"] { cursor: none; }
+      html.has-cursor iframe { cursor: auto; }
+      /* iframes swallow mouse events, so a transparent link sits on top while the custom cursor is active; clicking it opens the Gravatar profile */
+      .gshield { display: block; position: absolute; inset: 0; border-radius: 20px; z-index: 2; }
+      .cursor-blob { display: block; position: fixed; left: 0; top: 0; width: 240px; height: 240px; margin: -120px 0 0 -120px; overflow: visible; pointer-events: none; z-index: 9999; opacity: 0; will-change: transform; transition: opacity .25s; }
+      html.has-cursor.cursor-on .cursor-blob { opacity: 1; }
+      .cursor-dot { display: block; position: fixed; left: 0; top: 0; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: var(--green-dark); box-shadow: 0 0 0 1.5px rgba(255,254,250,.9); pointer-events: none; z-index: 10000; opacity: 0; will-change: transform; transition: opacity .25s, background .2s, box-shadow .2s; }
+      html.has-cursor.cursor-on .cursor-dot { opacity: 1; }
+      html.cursor-hover .cursor-dot { background: var(--green); }
+      html.cursor-dark .cursor-dot { background: var(--lime); box-shadow: 0 0 0 1.5px rgba(12,56,44,.85); }
+      .cursor-blob path { fill: rgba(23,107,80,.18); stroke: rgba(16,75,58,.85); stroke-width: 1.3; stroke-linejoin: round; transition: fill .25s, stroke .25s; }
+      html.cursor-hover .cursor-blob path { fill: rgba(200,229,106,.40); stroke: var(--green); }
+      html.cursor-dark .cursor-blob path { fill: rgba(200,229,106,.20); stroke: rgba(200,229,106,.9); }
+    }
   </style>
 
   <!-- Google Analytics -->
@@ -431,7 +451,7 @@
         <div class="nav-mid">
           <a href="/#about">About</a>
           <a href="/#projects">Work</a>
-          <a href="/blog/">Blog</a>
+          <a href="https://blog.pokharelbigyan.com.np/">Blog</a>
           <a href="/#contact">Contact</a>
         </div>
         <a class="nav-cta" href="/#contact">Get in touch <i class="fa-solid fa-arrow-right"></i></a>
@@ -518,8 +538,9 @@
       <div class="skill"><i class="fa-solid fa-wifi"></i><span>Offline-First Sync</span><small>POS reliability</small></div>
       <div class="skill"><i class="fa-solid fa-network-wired"></i><span>Network management</span><small>Infrastructure</small></div>
       <div class="skill"><i class="fa-brands fa-docker"></i><span>Docker</span><small>Containerization</small></div>
-<div class="skill"><i class="fa-brands fa-ubuntu"></i><span>Linux (Ubuntu & Arch)</span><small>Server & system admin</small></div>      <div class="skill"><i class="fa-solid fa-shuffle"></i><span>Nginx / Reverse Proxy</span><small>Load balancing & SSL</small></div>
-      
+      <div class="skill"><i class="fa-brands fa-ubuntu"></i><span>Linux (Ubuntu & Arch)</span><small>Server & system admin</small></div>
+      <div class="skill"><i class="fa-solid fa-shuffle"></i><span>Nginx / Reverse Proxy</span><small>Load balancing & SSL</small></div>
+
       <!-- Secondary / Less Used -->
       <div class="skill"><i class="fa-brands fa-git-alt"></i><span>Git</span><small>Version control</small></div>
       <div class="skill"><i class="fa-brands fa-python"></i><span>Python</span><small>Last resort only</small></div>
@@ -577,7 +598,7 @@
         </div>
       </div>
     </section>
-    
+
 <section class="section" id="philosophy">
   <div class="section-kicker"><span>04 / Principles</span>Engineering</div>
   <div class="philosophy">
@@ -607,14 +628,12 @@
       <div class="section-kicker"><span>06 / Notes & ideas</span>Technical insights</div>
       <div>
         <h2>Ideas worth documenting.</h2>
-        <p class="lead" style="margin-bottom:24px">Notes on backend engineering, written as I learn.</p>
+        <p class="lead" style="margin-bottom:24px">Latest posts on AI, cybersecurity and the wider IT world.</p>
         <div class="blog-grid">
-          <article class="blog-card"><time>JAN 2026</time><h3>Securing Node.js APIs with JWT</h3><p>A deep dive into implementing JSON Web Tokens for stateless authentication in Express.js applications.</p><a href="blog/jwt-auth.html">Read article <i class="fa-solid fa-arrow-right"></i></a></article>
-          <article class="blog-card"><time>JAN 2025</time><h3>PostgreSQL vs. MongoDB</h3><p>Choosing the right database for your backend: When to go Relational vs. Document-based.</p><a href="blog/postgres-vs-mongodb.html">Read article <i class="fa-solid fa-arrow-right"></i></a></article>
-          <article class="blog-card"><time>JAN 2025</time><h3>Optimizing React Performance for Slow Networks</h3><p>Techniques to enhance React app performance for users on slow or unstable network connections.</p><a href="blog/Optimizing_React_Performance_for_Slow_Networks.html">Read article <i class="fa-solid fa-arrow-right"></i></a></article>
-          <article class="blog-card"><time>JAN 2025</time><h3>The Engineer's Guide to Network Protocols: SMB, FTP, FTPS &amp; SFTP</h3><p>An in-depth comparison of SMB, FTP, FTPS, and SFTP protocols for secure file transfer and sharing.</p><a href="blog/SFTP.html">Read article <i class="fa-solid fa-arrow-right"></i></a></article>
-          <article class="blog-card"><time>JAN 2025</time><h3>Mastering the Node.js Event Loop: Preventing Bottlenecks</h3><p>Understanding the Node.js event loop and strategies to avoid performance bottlenecks in backend applications.</p><a href="blog/How_to_Prevent_Blocking_in_High-Traffic_Apps.html">Read article <i class="fa-solid fa-arrow-right"></i></a></article>
+          <article class="blog-card"><time>NOV 2026</time><h3>OpenAI Launches GPT-6 Cyber: What the AI Security Model Does</h3><p>OpenAI unveiled GPT-6 Cyber on November 5, a model built to find and validate software flaws. Here are the benchmarks, access limits and safeguards.</p><a href="https://blog.pokharelbigyan.com.np/openai-gpt-6-cyber-ai-security-model/" target="_blank" rel="noopener">Read article <i class="fa-solid fa-arrow-right"></i></a></article>
+          <article class="blog-card"><time>NOV 2026</time><h3>FBI Blames North Korea for $6.3 Billion Binance Crypto Heist</h3><p>The FBI says North Korea’s TraderTraitor hackers stole more than $6 billion from Binance on or about October 29. Here are the confirmed facts and how users can stay safe.</p><a href="https://blog.pokharelbigyan.com.np/fbi-north-korea-binance-6-billion-crypto-theft/" target="_blank" rel="noopener">Read article <i class="fa-solid fa-arrow-right"></i></a></article>
         </div>
+        <p class="lead" style="margin-top:24px;font-size:.98rem"><a href="https://blog.pokharelbigyan.com.np/" style="color:var(--green);font-weight:700;text-decoration:none">Browse all posts <i class="fa-solid fa-arrow-right"></i></a></p>
       </div>
     </section>
 
@@ -644,7 +663,7 @@
                 <span class="cp-txt"><strong>Gravatar</strong><small>gravatar.com/bigyanpokharel</small></span>
                 <i class="fa-solid fa-arrow-up-right-from-square cp-arrow"></i>
               </a>
-              <a class="cp-link" href="/blog/">
+              <a class="cp-link" href="https://blog.pokharelbigyan.com.np/">
                 <span class="cp-ico"><i class="fa-solid fa-pen-nib"></i></span>
                 <span class="cp-txt"><strong>Blog</strong><small>Notes on backend engineering</small></span>
                 <i class="fa-solid fa-arrow-right cp-arrow"></i>
@@ -654,7 +673,10 @@
         </div>
 
         <aside class="cp-side" aria-label="Gravatar profile card">
-          <iframe class="gcard" title="Bigyan Pokharel on Gravatar" src="https://gravatar.com/bigyanpokharel.card" width="auto" height="400" loading="lazy" style="border:0; margin:0; padding:0;"></iframe>
+          <div class="gwrap">
+            <iframe class="gcard" title="Bigyan Pokharel on Gravatar" src="https://gravatar.com/bigyanpokharel.card" width="auto" height="400" loading="lazy" style="border:0; margin:0; padding:0;"></iframe>
+            <a class="gshield" href="https://gravatar.com/bigyanpokharel" target="_blank" rel="me noopener noreferrer" aria-label="Open Bigyan Pokharel on Gravatar" tabindex="-1"></a>
+          </div>
           <p class="cp-side-note"><i class="fa-solid fa-circle-check"></i> Verified profile via Gravatar</p>
         </aside>
       </div>
@@ -687,7 +709,7 @@
           <ul class="flinks">
             <li><a href="/#about"><i class="fa-solid fa-chevron-right"></i>About</a></li>
             <li><a href="/#projects"><i class="fa-solid fa-chevron-right"></i>Work</a></li>
-            <li><a href="/blog/"><i class="fa-solid fa-chevron-right"></i>Blog</a></li>
+            <li><a href="https://blog.pokharelbigyan.com.np/"><i class="fa-solid fa-chevron-right"></i>Blog</a></li>
             <li><a href="/#contact"><i class="fa-solid fa-chevron-right"></i>Contact</a></li>
           </ul>
         </nav>
@@ -733,6 +755,120 @@
     document.addEventListener('click', (e) => { if (navLinks.classList.contains('open') && !e.target.closest('.topbar')) setMenu(false); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
     window.matchMedia('(min-width: 621px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
+  </script>
+
+  <svg class="cursor-blob" viewBox="-120 -120 240 240" aria-hidden="true"><path d=""/></svg>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <script>
+    // Amoeba cursor: an irregular body that throws out pseudopods (lobes that
+    // extend, wander and retract) while gliding after the mouse. Desktop mouse only.
+    (function () {
+      var mq = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+      if (!mq.matches) return;
+      var root = document.documentElement;
+      var blob = document.querySelector('.cursor-blob');
+      var dot = document.querySelector('.cursor-dot');
+      var path = blob.querySelector('path');
+      var interactive = '.gshield, a, button, [role="button"], .menu-toggle, .skill, .project, .blog-card, .cp-link, .fchips li';
+      var dark = '.contact-panel, .philosophy, .c-api, .ticker';
+
+      var N = 30, TAU = Math.PI * 2;
+      var mx = 0, my = 0, bx = 0, by = 0, rr = 16, stretch = 0, dir = 0;
+      var started = false, raf = null, pressed = false, hovering = false;
+      var px = new Array(N), py = new Array(N);
+
+      function rand(a, b) { return a + Math.random() * (b - a); }
+      function angDiff(a, b) { var d = a - b; while (d > Math.PI) d -= TAU; while (d < -Math.PI) d += TAU; return d; }
+
+      // pseudopods: each one grows out, drifts around the body, then retracts and respawns elsewhere
+      var pods = [];
+      function spawn(pod, now, moving) {
+        pod.angle = (moving && Math.random() < 0.55) ? dir + rand(-0.9, 0.9) : rand(0, TAU);
+        pod.drift = rand(-0.0006, 0.0006);
+        pod.start = now; pod.dur = rand(1100, 2300);
+        pod.amp = rand(0.45, 1.05);
+        pod.width = rand(0.30, 0.62);
+        pod.skew = rand(-0.5, 0.5);
+        return pod;
+      }
+      for (var j = 0; j < 5; j++) {
+        var pd = spawn({}, 0, false);
+        pd.start = -Math.random() * pd.dur;
+        pods.push(pd);
+      }
+      var ph = [rand(0, TAU), rand(0, TAU), rand(0, TAU)];
+
+      function build(t, moving) {
+        var amps = [];
+        for (var j = 0; j < pods.length; j++) {
+          var pd = pods[j];
+          var u = (t - pd.start) / pd.dur;
+          if (u >= 1) { spawn(pd, t, moving); u = 0; }
+          // quick push-out, slow pull-back
+          var e = u < 0.4 ? Math.sin((u / 0.4) * Math.PI / 2) : Math.pow(Math.cos(((u - 0.4) / 0.6) * Math.PI / 2), 1.6);
+          pd.angle += pd.drift * 16;
+          amps.push(e * pd.amp * rr);
+        }
+        for (var i = 0; i < N; i++) {
+          var a = (i / N) * TAU;
+          var r = rr
+            + Math.sin(t * 0.0013 + ph[0] + a * 2) * rr * 0.10
+            + Math.sin(t * 0.0021 + ph[1] + a * 3) * rr * 0.08
+            + Math.sin(t * 0.0009 + ph[2] + a * 5) * rr * 0.05;
+          for (var k = 0; k < pods.length; k++) {
+            var d = angDiff(a, pods[k].angle + pods[k].skew * Math.sin((t - pods[k].start) * 0.003));
+            var w = pods[k].width;
+            r += amps[k] * Math.exp(-(d * d) / (2 * w * w));
+          }
+          r += stretch * 0.8 * Math.cos(angDiff(a, dir));
+          if (r < rr * 0.45) r = rr * 0.45;
+          px[i] = Math.cos(a) * r; py[i] = Math.sin(a) * r;
+        }
+        var dstr = 'M' + px[0].toFixed(1) + ' ' + py[0].toFixed(1);
+        for (var m = 0; m < N; m++) {
+          var p0 = (m - 1 + N) % N, p1 = m, p2 = (m + 1) % N, p3 = (m + 2) % N;
+          dstr += 'C' + (px[p1] + (px[p2] - px[p0]) / 6).toFixed(1) + ' ' + (py[p1] + (py[p2] - py[p0]) / 6).toFixed(1) + ' '
+                + (px[p2] - (px[p3] - px[p1]) / 6).toFixed(1) + ' ' + (py[p2] - (py[p3] - py[p1]) / 6).toFixed(1) + ' '
+                + px[p2].toFixed(1) + ' ' + py[p2].toFixed(1);
+        }
+        path.setAttribute('d', dstr + 'Z');
+      }
+
+      function frame(t) {
+        var dx = mx - bx, dy = my - by;
+        bx += dx * 0.13; by += dy * 0.13;
+        var vx = dx * 0.13, vy = dy * 0.13;
+        var speed = Math.sqrt(vx * vx + vy * vy);
+        if (speed > 0.4) dir = Math.atan2(vy, vx);
+        stretch += (Math.min(speed * 1.3, 16) - stretch) * 0.18;
+        rr += ((pressed ? 10 : (hovering ? 24 : 16)) - rr) * 0.12;
+        blob.style.transform = 'translate3d(' + bx.toFixed(1) + 'px,' + by.toFixed(1) + 'px,0)';
+        build(t, speed > 1);
+        raf = requestAnimationFrame(frame);
+      }
+
+      document.addEventListener('mousemove', function (e) {
+        mx = e.clientX; my = e.clientY;
+        dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
+        if (!started) {
+          started = true; bx = mx; by = my;
+          root.classList.add('has-cursor', 'cursor-on');
+          raf = requestAnimationFrame(frame);
+        }
+        var el = e.target && e.target.closest ? e.target : null;
+        hovering = !!(el && el.closest(interactive));
+        root.classList.toggle('cursor-hover', hovering);
+        root.classList.toggle('cursor-dark', !!(el && el.closest(dark)));
+      }, { passive: true });
+      document.addEventListener('mousedown', function () { pressed = true; });
+      document.addEventListener('mouseup', function () { pressed = false; });
+      document.addEventListener('mouseleave', function () { root.classList.remove('cursor-on'); });
+      document.addEventListener('mouseenter', function () { if (started) root.classList.add('cursor-on'); });
+      document.addEventListener('visibilitychange', function () {
+        if (!started) return;
+        if (document.hidden) { cancelAnimationFrame(raf); } else { raf = requestAnimationFrame(frame); }
+      });
+    })();
   </script>
 </body>
 </html>
