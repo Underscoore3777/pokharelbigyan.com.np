@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Redirecting…</title>
+
+  <!-- Tell search engines the new home -->
+  <link rel="canonical" href="https://blog.pokharelbigyan.com.np/">
+
+  <!-- Ask crawlers not to index this old page -->
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Fallback redirect (works even with JS disabled) -->
+  <meta http-equiv="refresh" content="0; url=https://blog.pokharelbigyan.com.np/">
+
+  <script>
+    // Preserve the path + query string if you want deep links to carry over
+    (function () {
+      var newBase = "https://blog.pokharelbigyan.com.np";
+      var path = window.location.pathname.replace(/^\/[^\/]*\.github\.io/i, "");
+      var target = newBase + path + window.location.search + window.location.hash;
+      window.location.replace(target);
+    })();
+  </script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f7f7f8;
+      color: #222;
+      text-align: center;
+    }
+    a { color: #0b62d6; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>This site has moved.</p>
+    <p>
+      If you are not redirected automatically,
+      <a href="https://blog.pokharelbigyan.com.np/">click here</a>.
+    </p>
+  </main>
+</body>
+</html>
