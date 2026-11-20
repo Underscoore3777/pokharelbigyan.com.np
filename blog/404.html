@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Redirecting…</title>
-
-  <link rel="canonical" href="https://blog.pokharelbigyan.com.np/">
-  <meta name="robots" content="noindex, follow">
-
-  <!-- Works even with JavaScript disabled -->
-  <meta http-equiv="refresh" content="0; url=https://blog.pokharelbigyan.com.np/">
+  <title>Page Not Found</title>
+  <meta name="robots" content="noindex">
 
   <script>
-    window.location.replace("https://blog.pokharelbigyan.com.np/");
+    (function () {
+      // Matches /blog/ or /blog or /repo-name/blog/... (works on github.io too)
+      if (/\/blog(\/|$)/.test(window.location.pathname)) {
+        window.location.replace("https://blog.pokharelbigyan.com.np/");
+      }
+    })();
   </script>
 
   <style>
@@ -24,9 +24,9 @@
 </head>
 <body>
   <main>
-    <p>This site has moved.</p>
-    <p>If you are not redirected automatically,
-      <a href="https://blog.pokharelbigyan.com.np/">click here</a>.</p>
+    <h1>404</h1>
+    <p>Page not found.</p>
+    <p><a href="/">Go to homepage</a></p>
   </main>
 </body>
 </html>
